@@ -3,11 +3,14 @@ var router = express.Router();
 
 var sql = require('mssql');
 var knex = require('knex')({
-  client: 'mssql',
-  user: 'iantf',
-	password: 'iantf',
-	host: 'sql.neit.edu', 
-	database: 'erik'
+  dialect: 'mssql',
+  connection: {
+    user: 'iantf',
+    port: '4500',
+	  password: 'iantf',
+	  host: 'sql.neit.edu', 
+	  database: 'erik'
+  }
 });
 
 /* GET home page. */
