@@ -1,0 +1,17 @@
+{
+  "name": "lab-availability",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "async": "^2.4.1",
+    "body-parser": "^1.17.2",
+    "express": "^5.0.0-alpha.2",
+    "html": "^1.0.0",
+    "jsdom": "^9.6.0",
+    "morgan": "^1.6.1",
+    "mssql": "^3.3.0",
+    "request": "^2.75.0"
+  }
+}
