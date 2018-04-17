@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style type="text/css">
+         .head1 {width:60px;}
+         .head2 {width: 400px;}
+       .subject {width: 50px;}
+       .number {width: 50px;}
+       .title {width: 390px;}
+       .lecture {width: 50px;}
+       .lab {width: 50px;}
+       .credits {width: 50px;}
+       #quarters, #header {margin-left:20px;}
+       .qrtr {width:70px;}
+       .programName {width: 200px;}
+       #divMessage {display: None;}
+       #numberOfCurricula {width:20px;}
+    </style>
+<title>Curriculum</title>
+</head>
+<body>
+
+        <form id="curForm">
+            <div class="main" id="header">
+                <h2>New Curriculum</h2>
+                <label>Start Quarter:</label>
+                <input type="text" class="qrtr" id="startDate" name="startDate">
+                <label>Name:</label>
+                <input type="text" class="programName" id="curriculumName" name="curriculumName">
+                <label>Program Level:</label>
+                <input type="radio" name="programLevel" value="AS">AS&nbsp;&nbsp;
+                <input type="radio" name="programLevel" value="BS">BS&nbsp;&nbsp;
+                <input type="radio" name="programLevel" value="MS">MS
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="qrtr" id="numberOfCurricula" name="numberOfCurricula" value="0">
+            </div>
+
+
+        
+            <div id="quarters">
+                
+            </div>
+            <div style="margin-left:650px;">
+                <button type="button" class="btn btn-success" id="saveChanges">Save Curriculum Changes</button>
+                <button type="button" class="btn btn-success" id="reset">Reset</button>
+                
+            </div>
+            <div class="alert alert-success" id="divMessage" style="text-align: center">
+                <strong>Curriculum Changes Saved!</strong> 
+            </div>
+        </form>
+  </div>
+</div>
+
+</body>
+</html>
+
+<script>
+    function getCurriculum (startDate, curriculumName, level) {
+        $("#startDate").val (startDate);
+        $("#curriculumName").val (curriculumName);
+         $("input[name=programLevel][value=" + level + "]").attr('checked', 'checked');
+
+        var curriculum = {startDate: startDate, curriculumName: curriculumName, level: level, courses:[]};
+
+        curriculum.courses = [];
+        for (i=0; i<6; i++) {
+            curriculum.courses[i] = [];
+        }
+        curriculum.courses[0].push ({dept: "NE", courseNumber: 115, courseTitle: "Computer and Networking Fundamentals", class: 2, lab:2, credits:3});
+        curriculum.courses[0].push ({dept: "SE", courseNumber: 114, courseTitle: "Programming Essentials Using C++", class: 2, lab:4, credits:4});
+        curriculum.courses[0].push ({dept: "IT", courseNumber: 121, courseTitle: "IT Visual Communications", class: 2, lab:2, credits:3});
+        curriculum.courses[1].push ({dept: "SE", courseNumber: 111, courseTitle: "HTML and JavaScript", class: 2, lab:4, credits:4});
+        curriculum.courses[1].push ({dept: "SE", courseNumber: 124, courseTitle: "Intermediate Programming Using C++", class: 2, lab:4, credits:4});
+        curriculum.courses[1].push ({dept: "NE", courseNumber: 121, courseTitle: "Windows Networking Essentials", class: 2, lab:4, credits:4});
+        curriculum.courses[2].push ({dept: "NE", courseNumber: 131, courseTitle: "Networking for Small Businesses", class: 2, lab:2, credits:3});
+        curriculum.courses[2].push ({dept: "SE", courseNumber: 133, courseTitle: "Database Management", class: 2, lab:4, credits:4});
+        curriculum.courses[2].push ({dept: "NE", courseNumber: 267, courseTitle: "Introduction to Information Security", class: 2, lab:2, credits:3});
+        curriculum.courses[3].push ({dept: "NE", courseNumber: 245, courseTitle: "Introduction to Networks", class: 2, lab:4, credits:4});
+        curriculum.courses[3].push ({dept: "NE", courseNumber: 247, courseTitle: "Windows Server", class: 2, lab:4, credits:4});
+        curriculum.courses[3].push ({dept: "NE", courseNumber: 255, courseTitle: "Linux Essentials", class: 2, lab:2, credits:3});
+        curriculum.courses[4].push ({dept: "NE", courseNumber: 244, courseTitle: "Desktop OS Troubleshooting", class: 2, lab:2, credits:3});
+        curriculum.courses[4].push ({dept: "NE", courseNumber: 257, courseTitle: "Routing and Switching Essentials", class: 2, lab:4, credits:4});
+        curriculum.courses[4].push ({dept: "IT", courseNumber: 259, courseTitle: "Windows Server Lab", class: 0, lab:2, credits:1});
+        curriculum.courses[5].push ({dept: "NE", courseNumber: 265, courseTitle: "AS Capstone Project", class: 3, lab:2, credits:4});
+        curriculum.courses[5].push ({dept: "NE", courseNumber: 269, courseTitle: "Advanced Desktop OS Troubleshooting", class: 2, lab:2, credits:3});
+        curriculum.courses[5].push ({dept: "IT", courseNumber: 267, courseTitle: "IT Ethics and Professional Development", class: 3, lab:0, credits:3});
+        
+        return (curriculum);
+    }
+  
+    function addCourse (course, qtr) {
+        if (course == undefined) {
+            course = {dept: "", courseNumber: "", courseTitle: "", class: 2, lab:4, credits:4};
+           
+        }
+        var row = "<tr>";
+        row += "<td><input type='hidden' name='qtr' value='" + qtr + "'>";
+        row += "<input type='text' class='subject' name='dept' value='" + course.dept + "'></td>";
+        row += "<td><input type='text' class='number' name='number'  value='" + course.courseNumber + "'></td>";
+        row += "<td><input type='text' class='title' name='title'  value='" + course.courseTitle + "'></td>";
+        row += "<td><input type='text' class='lecture' name='lecture'  value='" + course.class + "'></td>";
+        row += "<td><input type='text' class='lab' name='lab'  value='" + course.lab + "'></td>";
+        row += "<td><input type='text' class='credits' name='credits'  value='" + course.credits + "'>";
+        row += "&nbsp;&nbsp;&nbsp;<span class='glyphicon glyphicon-plus'></span>";
+         row += "&nbsp;&nbsp;&nbsp;<span class='glyphicon glyphicon-minus'></span>" + "</td>";
+        
+        row += "</tr>";
+
+        return (row);
+    }
+ 
+    function displayCurriculum (startDate, curriculumName, level) {
+        curriculum = getCurriculum ("201710", "Network Engineering", "AS");
+        var str = "<table class='table' id='curriculumTable'>";
+        str += "<tr><th class='head1'>Subject</th><th class='head1'>Number</th><th class='head2'>Title</th>";
+        str+= "<th class='head1'>Lecture</th><th  class='head1'>Lab</th><th>Credits</th>";
+        var courseCount = 0;
+        for (var qtr=0;qtr<6; qtr++) {
+           str += "<tr><th colspan='6'>Quarter " + (qtr+1) + "</th></tr>";
+           for (var c=0; c<curriculum.courses[qtr].length; c++) {
+               str += addCourse (curriculum.courses[qtr][c], qtr);
+            }
+        } 
+        
+        str += "</table>";
+
+
+        $("#quarters").html(str);
+    }
+
+    $(document).ready(function() {
+         
+           displayCurriculum ("201710", "Network Engineering", "AS");
+           $(".glyphicon-plus").click(function (e) {
+                 $(this).parent().parent().after( addCourse ());
+                 $(".glyphicon-plus").off("click");
+                  $( ".glyphicon-plus" ).on( "click", function() {
+                    $(this).parent().parent().after( addCourse ());
+                 });
+                 $(".glyphicon-minus").click(function () { 
+                    $(this).parent().parent().remove();
+                });
+
+           });
+          
+           $(".glyphicon-minus").click(function () { 
+                $(this).parent().parent().remove();
+           });
+
+            $("#reset").click(function () { 
+                 $(".subject,.number,.title,.lecture,.lab,.lecture,.credits").val ("");
+           });
+           $("#saveChanges").click (function (e) {
+                 $.ajax ({
+                    type: "POST",
+                    url: "http://localhost:3000/curriculum/",
+                    data: $("#curForm").serialize(),
+                   // dataType: "json",
+                    success: function (data) {
+                        $("#divMessage").show();
+                       //  $(".subject:gt(8),.number:gt(8),.title:gt(8),.lecture:gt(8),.lab:gt(8),.lecture:gt(8),.credits:gt(8)").val ("");
+                        $("#numberOfCurricula").val (parseInt($("#numberOfCurricula").val()) + 1);
+                        $("#curriculumName").val ("");
+                        alert ("Curriculum Added");
+                        $("#startDate").focus();
+                        setTimeout(function(){$("#divMessage").hide(); }, 3000);
+                      
+                    }
+                });
+           });
+    });
+</script>

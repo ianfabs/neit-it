@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test</title>
+
+ <script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<form name="test" method="post" action="http://localhost:3000/curriculum/">
+    <input type="text" name="test" id="test" value="yahoo">
+    <input type="submit" value="Submit Curriculum" />
+</form>
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+         obj = {
+            CohortStartDate: "201730",
+            CohortSession:1,
+            CurriculumId: 88,
+            CohortStudentCount: 15,
+            CohortId: 27
+            
+        };
+        /*
+        $.ajax ({
+            type: "POST",
+            url: "http://localhost:3000/cohortupdate",
+            data: obj,
+            success: function (data) {
+                console.log ("hey");
+            }
+        });
+        */
+        
+        $.ajax ({
+            type: "POST",
+            url: "http://localhost:3000/cohortupdate/",
+            data: obj,
+            success: function (data) {
+               console.log (data);
+            }
+        });
+    });
+ </script>
