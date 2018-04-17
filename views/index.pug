@@ -6,13 +6,14 @@ block content
       h2 Cohorts
       ul
       for cohort, i in cohorts
-        li= `${cohort.CohortStartDate}`
+        li
+          a(href=`/cohorts/${cohort.CohortStartDate}`)= `${cohort.CohortStartDate} - ${cohort.CohortStudentCount} students`
     section.col.b.main
       nav.tabs
         span.tab.one
           |Schedule
         span.tab.two
-          |Cohorts
+          a(href="/courses") Courses
         span.tab.three
           |Instructors
         span.tab.four
@@ -20,7 +21,7 @@ block content
       section.cbox.one
         include tabs/one
       section.cbox.two
-        p Hi here
+        include tabs/two
       section.cbox.three
         p Hi somewhere
       section.cbox.four

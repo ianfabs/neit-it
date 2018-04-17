@@ -13,6 +13,13 @@ var knex = require('knex')({
 	database: 'erik'
 });
 
+var quarter = require("./comp.js").getQuarter;
+var current = require("./comp.js").getCurrent;
+
+//console.log(current());
+
+//console.log(quarter("201810", current()));
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -30,10 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-app.use(function(req, res, next) {
-  req.knex = knex;
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
