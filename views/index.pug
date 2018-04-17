@@ -1,5 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    aside.col.a.cohorts
+      h2 Cohorts
+      ul
+      for cohort, i in cohorts
+        li= `${cohort.CohortStartDate}`
+    section.col.b.main
+      nav.tabs
+        span.tab.one
+          |Schedule
+        span.tab.two
+          |Cohorts
+        span.tab.three
+          |Instructors
+        span.tab.four
+          |Full
+      section.cbox.one
+        include tabs/one
+      section.cbox.two
+        p Hi here
+      section.cbox.three
+        p Hi somewhere
+      section.cbox.four
+        p Hi nowhere
+    aside.col.c.data
+      h2 Data

@@ -4,6 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var sql = require('mssql');
+var knex = require('knex')({
+  client: 'mssql',
+  user: 'iantf',
+	password: 'iantf',
+	host: 'sql.neit.edu', 
+	database: 'erik'
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -21,6 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use(function(req, res, next) {
+  req.knex = knex;
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
