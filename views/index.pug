@@ -4,10 +4,8 @@ block content
   div.container
     aside.col.a.cohorts
       h2 Cohorts
-      ul
-      for cohort, i in cohorts
-        li
-          a(href=`/cohorts/${cohort.CohortId}`)= ` Quarter ${cohort.q} - ${cohort.CohortStudentCount} students`
+      ul#cohorts
+      script(src="/js/fetch-cohorts.js")
     section.col.b.main
       nav.tabs
         span.tab.one
@@ -23,7 +21,7 @@ block content
       section.cbox.two
         include tabs/two
       section.cbox.three
-        p Hi somewhere
+        include tabs/three
       section.cbox.four
         p Hi nowhere
     aside.col.c.data

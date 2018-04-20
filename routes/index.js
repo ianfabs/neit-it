@@ -18,9 +18,13 @@ var knex = require('knex')({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  knex.select(knex.raw("CohortId, CohortStartDate, CohortStudentCount, dbo.getQuarter(Curriculum.Cohorts.CohortStartDate, "+current()+", Curriculum.Curriculum.CurriculumLevel) AS [q]"))
+    res.render('index', { title: 'Schedule'});
+});
+
+router.get('/cohorts', function(req, res, next) {
+  knex.select(knex.raw("CohortId AS [id], CohortStartDate, CohortStudentCount, dbo.getQuarter(Curriculum.Cohorts.CohortStartDate, "+current()+", Curriculum.Curriculum.CurriculumLevel) AS [q]"))
   .from("Curriculum.Cohorts").join("Curriculum.Curriculum", "Curriculum.Curriculum.CurriculumID", "=", "Curriculum.Cohorts.CurriculumId").then( (row) => {
-    res.render('index', { title: 'Schedule', cohorts: row });
+    res.json(row);
   } );
 
   
@@ -30,8 +34,13 @@ router.get('/cohorts/:id', function(req, res, next) {
   knex.select('CohortID', 'CohortStartDate','CohortStudentCount').from('Curriculum.Cohorts').then( (row) => {
     res.render('index', { title: 'Schedule', cohorts: row });
   } );
+});
 
-  
+router.get('/instructors', function(req, res, next) {
+  knex.select('instructorDisplayName').from('Curriculum.Instructor').where("instructorDisplayName", '<>', 'NULL').orderBy('instructorDisplayName').then( (row)=>{
+    console.log(row);
+    res.json(row);
+  } );
 });
 
 router.get('/courses', function(req, res, next) {
