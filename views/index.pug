@@ -7,7 +7,7 @@ block content
       ul
       for cohort, i in cohorts
         li
-          a(href=`/cohorts/${cohort.CohortStartDate}`)= `${cohort.CohortStartDate} - ${cohort.CohortStudentCount} students`
+          a(href=`/cohorts/${cohort.CohortId}`)= ` Quarter ${cohort.q} - ${cohort.CohortStudentCount} students`
     section.col.b.main
       nav.tabs
         span.tab.one

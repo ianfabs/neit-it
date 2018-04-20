@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var quarter = require("../comp.js").getQuarter;
+var current = require("../comp.js").getCurrent;
+
 var sql = require('mssql');
 var knex = require('knex')({
   dialect: 'mssql',
@@ -15,7 +18,8 @@ var knex = require('knex')({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  knex.select('CohortStartDate', 'CohortStudentCount').from('Curriculum.Cohorts').then( (row) => {
+  knex.select(knex.raw("CohortId, CohortStartDate, CohortStudentCount, dbo.getQuarter(Curriculum.Cohorts.CohortStartDate, "+current()+", Curriculum.Curriculum.CurriculumLevel) AS [q]"))
+  .from("Curriculum.Cohorts").join("Curriculum.Curriculum", "Curriculum.Curriculum.CurriculumID", "=", "Curriculum.Cohorts.CurriculumId").then( (row) => {
     res.render('index', { title: 'Schedule', cohorts: row });
   } );
 
