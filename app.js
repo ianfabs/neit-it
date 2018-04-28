@@ -5,21 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-var sql = require('mssql');
-var knex = require('knex')({
-  client: 'mssql',
-  user: 'iantf',
-	password: 'iantf',
-	host: 'sql.neit.edu', 
-	database: 'erik'
-});
-
-var quarter = require("./comp.js").getQuarter;
-var current = require("./comp.js").getCurrent;
-
-//console.log(current());
-
-//console.log(quarter("201810", current()));
+const mongodb = require('mongodb');
+const mognoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
