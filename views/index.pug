@@ -25,16 +25,18 @@ block content
       section.cbox.four
         p Hi nowhere
     aside.col.c.data
-      h2 Data
+      h2#next
+      
       -if(cohort)
-        p=`Quarter ${cohort.quarter}`
+        
         p=`${cohort.population} Students`
-        h3#curric
+        p#curric
         script(src="/js/fetch-curriculum.js" data-token="curr" data-id=`${cohort.curriculum}` data-quarter=`${cohort.quarter}`)
-        h4=`Current Courses`
-        ul#currentCourses
-        h4=`Next Courses`
+        h4#next
         ul#nextCourses
       -else
         p=`Nothing to display`
+    script.
+      document.querySelectorAll("#next")[0].appendChild( document.createTextNode(`${getNext( getCurrent() ).season} ${getNext( getCurrent() ).code}`) );
+      document.querySelectorAll("#next")[1].appendChild( document.createTextNode(`${getNext( getCurrent() ).season} ${getNext( getCurrent() ).code} courses`) );
         

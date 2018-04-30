@@ -8,7 +8,6 @@ fetch('/fetch/cohorts', {method:'POST'}).then(res => res.json()).then( (res)=>{
         let txt = document.createTextNode(`${el["start-date"]} - ${el.population} students`);
         a.appendChild( txt );
         a.setAttribute("href", `/cohorts/${el._id}`);
-        //console.log("test: [i]: " + res[el].quarter);
         li.appendChild(a);
         cohorts.appendChild(li);
     }

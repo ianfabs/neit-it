@@ -1,4 +1,4 @@
-exports.getQuarter = function(start, current){
+let getQuarter = function(start, current){
     // The starting date represents quarter one
     // the first four numbers are the year that the academic year will end in
     // the last two are the current quarter season
@@ -33,18 +33,7 @@ exports.getQuarter = function(start, current){
     return q;
 };
 
-exports.quarter = function(start, current){
-    start = String(start), current = String(current);
-    let a = [start.slice(0,4) , start.slice(4)/10]
-    ,b = [current.slice(0,4), current.slice(4)/10]
-    ,q = 1;
-    if( Math.abs(a[0] - b[0]) == 1){ q += (4 * Math.abs(a[0] - b[0]) ); }
-    else if(Math.abs(a[0] - b[0]) == 0){/*same academic year, so do nothing*/}
-    q += Math.abs(a[1] - b[1]);
-    return q;
-};
-
-exports.getCurrent = function(){
+let getCurrent = function(){
     let y = new Date().getFullYear();
     let m = new Date().getMonth();
     let d = new Date().getDate();
@@ -78,12 +67,13 @@ exports.getCurrent = function(){
     };
 }
 
-exports.getNext = function(current){
-    let y = current.slice(0,4);
+let getNext = function(current){
+    let y = current.code.slice(0,4);
+    let s  = Number(current.code.slice(4));
     if(current.code.slice(4) >= 4){
-        let s = 10;
+        s = 10;
     }else{
-        let s = Number(current.code.slice(4)) + 10;
+        s = s + 10;
     }
     
     switch(current.season){
