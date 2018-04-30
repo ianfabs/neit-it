@@ -33,6 +33,17 @@ exports.getQuarter = function(start, current){
     return q;
 };
 
+exports.quarter = function(start, current){
+    start = String(start), current = String(current);
+    let a = [start.slice(0,4) , start.slice(4)/10]
+    ,b = [current.slice(0,4), current.slice(4)/10]
+    ,q = 1;
+    if( Math.abs(a[0] - b[0]) == 1){ q += (4 * Math.abs(a[0] - b[0]) ); }
+    else if(Math.abs(a[0] - b[0]) == 0){/*same academic year, so do nothing*/}
+    q += Math.abs(a[1] - b[1]);
+    return q;
+};
+
 exports.getCurrent = function(){
     let y = new Date().getFullYear();
     let m = new Date().getMonth();
@@ -42,18 +53,17 @@ exports.getCurrent = function(){
     if( (m == 9 && d >= 2 && d <= 31) || (m == 10 && d >= 1 && d <= 30 ) || (m == 11 && d>=1 && d <= 16) ){
         //Fall Quarter
         s = 10;
-    }
-    if( (m == 0 && d >= 7 && d <= 31) || (m == 1 && d >= 1 && d <= 28 ) || (m == 2 && d>=1 && d <= 17) ){
+    }else if( (m == 0 && d >= 7 && d <= 31) || (m == 1 && d >= 1 && d <= 28 ) || (m == 2 && d>=1 && d <= 17) ){
         //Winter Quarter
         s = 20;
-    }
-    if( (m == 2 && d >= 25 && d <= 31) || (m == 3 && d >= 1 && d <= 30 ) || (m == 4 && d>=1 && d <= 31) || (m == 5 && d>=1 && d <= 2) ){
+    }else if( (m == 2 && d >= 25 && d <= 31) || (m == 3 && d >= 1 && d <= 30 ) || (m == 4 && d>=1 && d <= 31) || (m == 5 && d>=1 && d <= 2) ){
         //Spring Quarter
         s = 30;
-    }
-    if( (m == 6 && d >= 15 && d <= 31) || (m == 7 && d >= 1 && d <= 31 ) || (m == 8 && d>=1 && d <= 22) ){
+    }else if( (m == 6 && d >= 15 && d <= 31) || (m == 7 && d >= 1 && d <= 31 ) || (m == 8 && d>=1 && d <= 22) ){
         //Summer Quarter
         s = 40;
+    }else{
+        s = 0;
     }
 
     return String("".concat(y,s));

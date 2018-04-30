@@ -9,7 +9,7 @@ const mongodb = require('mongodb');
 const mognoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var fetchRouter = require('./routes/fetch');
 
 var app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/fetch', fetchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

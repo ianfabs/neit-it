@@ -26,7 +26,15 @@ block content
         p Hi nowhere
     aside.col.c.data
       h2 Data
-      div#quarter
-      div#courselist
-      script.
+      -if(cohort)
+        p=`Quarter ${cohort.quarter}`
+        p=`${cohort.population} Students`
+        h3#curric
+        script(src="/js/fetch-curriculum.js" data-token="curr" data-id=`${cohort.curriculum}` data-quarter=`${cohort.quarter}`)
+        h4=`Current Courses`
+        ul#currentCourses
+        h4=`Next Courses`
+        ul#nextCourses
+      -else
+        p=`Nothing to display`
         
