@@ -4,20 +4,21 @@ block content
   div.container
     aside.col.a.cohorts
       h2 Cohorts
-      ul#cohorts
+      div#cohorts
       script(src="/js/fetch-cohorts.js")
     section.col.b.main
       nav.tabs
-        span.tab.one
+        span.tab.one.active
           |Schedule
         span.tab.two
-          a(href="/courses") Courses
+          | Courses
         span.tab.three
           |Instructors
         span.tab.four
           |Full
       section.cbox.one
         include tabs/one
+        
       section.cbox.two
         include tabs/two
       section.cbox.three
@@ -29,9 +30,9 @@ block content
       
       -if(cohort)
         
-        p=`${cohort.population} Students`
+        p.pop
         p#curric
-        script(src="/js/fetch-curriculum.js" data-token="curr" data-id=`${cohort.curriculum}` data-quarter=`${cohort.quarter}`)
+        script(src="/js/fetch-curriculum.js" data-token="curr" data-cohort=`${cohort}` data-id=`${cohort.curriculum}` data-quarter=`${cohort.quarter}`)
         h4#next
         ul#nextCourses
       -else

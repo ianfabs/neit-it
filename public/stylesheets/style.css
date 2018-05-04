@@ -2,11 +2,10 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
 }
-
+/*********************Tabs**********************/
 .tabs{
   display: inline-flex;
   flex-direction: row;
@@ -28,15 +27,32 @@ a {
 }
 .container{
   display: grid;
-  
-  grid-template-columns: 20% 50% 30%;
+  grid-template-columns: 27% 50% 23%;
   grid-gap: 10px;
   grid-auto-rows: 100%;
 }
+/*********************Tabs**********************/
 .col{
   border: 1px solid black;
   padding: 30px;
 }
+/*LEFT*/
 .col.a{ grid-column: 1;grid-row: 1;border-right: 1px solid black}
+/*MIDDLE*/
 .col.b{ grid-column: 2;grid-row: 1;}
+/*RIGHT*/
 .col.c{ grid-column: 3;grid-row: 1;}
+
+.cohort{
+  display: grid;
+  grid-template-columns: 16vw 0.5vw;
+  grid-gap: 10px;
+  grid-auto-rows: 100%;
+}
+
+.cohort > .left{
+  grid-column: 1;
+}
+.cohort > .right{
+  grid-column: 3;
+}

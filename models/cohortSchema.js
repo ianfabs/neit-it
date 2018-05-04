@@ -6,7 +6,9 @@ const cohortSchema = new Schema({
     population: Number,
     quarter: Number,
     "start-date": String,
-    curriculum: Schema.ObjectId
+    curriculum: Schema.ObjectId,
+    session: Number,
+    active : Boolean
 });
 
 var Cohort = mongoose.model('Cohort', cohortSchema);

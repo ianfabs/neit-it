@@ -1,3 +1,4 @@
+//route for /cohort
 var express = require('express');
 var router = express.Router();
 
@@ -20,14 +21,16 @@ router.get('/cohorts/:id', (req,res,next)=>{
   res.locals.cohort = req.params.id;
 
   Cohort.findOne({'_id' : req.params.id}, '', (err, cohort)=>{
+    res.locals.curriculum = cohort.curriculum;
     res.render('index', {title: 'Cohort', cohort : cohort})
   });
 });
 
-router.get('/schedule/course/:id/curric/:cid', (req, res, next)=>{
+router.get('/schedule/course/:id', (req, res, next)=>{
+    console.log(res.locals.curriculum);
   Course.find({ '_id':req.params.id }, '', (err, course)=>{
-    Cohort.find({'_id' : req.params.cid}, '', (err, cohort)=>{
-      res.render('index', {title: 'Schedule', cohort: cohort, course: course[0]});
+    Cohort.find({'_id' : res.locals.cohort}, '', (err, cohort)=>{
+      res.render('index', {title: 'Schedule', course: course[0], cohort: cohort});
     })
     
   });
