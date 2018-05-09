@@ -1,0 +1,37 @@
+-if(course)
+  h2.courseTitle=`${course.dept}${course.number} \u2012  ${course.name}`
+
+form(action="" method="")
+    table#schedule
+        tr
+            th Meeting Times
+            th M
+            th T
+            th W
+            th R
+            th F
+        tr
+            td 07:45 - 08:35
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+        tr
+            td 08:45 - 08:35
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+            td 
+                input(type="checkbox")
+script(src="/js/schedule-table.js" defer)
