@@ -15,20 +15,29 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/cohorts', (req,res,next)=>{
-  Cohort.find({}, '', (err, cohort)=>{
-    res.json(cohort);
-  });
+router.post('/cohorts', async (req,res,next)=>{
+  try{
+    await Cohort.find({}, '', (err, cohort)=>{
+      res.json(cohort);
+    });
+  }catch(e){
+    res.send(e);
+  }
 });
 
-router.post('/curriculum/:id', (req,res,next)=>{
-  if (typeof(req.params.id) == "undefined"){
-    req.params.id = res.locals.curriculum
+router.post('/curriculum/:id', async (req,res,next)=>{
+  try{
+    if (typeof(req.params.id) == "undefined"){
+      req.params.id = res.locals.curriculum
+    }
+    await Curriculum.findOne({'_id' : req.params.id}, '', (err, curr)=>{
+      if(err) console.error(err);
+      res.json(curr);
+    });
+  }catch(e){
+    res.send(e);
   }
-  Curriculum.findOne({'_id' : req.params.id}, '', (err, curr)=>{
-    if(err) console.error(err);
-    res.json(curr);
-  });
+  
 });
 
 router.post('/course/:id', async (req,res,next)=>{

@@ -2,8 +2,6 @@ var me = document.querySelector('script[data-token="curr"][data-quarter][data-id
 var id = me.getAttribute('data-id');
 let quarter = me.getAttribute('data-quarter');
 
-const selectCourse = document.createElement("select");
-
 if(id != 'undefined'){
     window.localStorage.curr = id;
     window.localStorage.quarter = quarter;
@@ -29,12 +27,14 @@ console.log(id);
             course = res.quarters[index][course];
             let li = d.createElement('li'), a = d.createElement("a");
             let txt = d.createTextNode(`${course.dept}${course.number}`);
-            a.href=`/schedule/course/${course._id}/curric/${window.localStorage}`;
+            a.href=`/schedule/course/${course._id}/curric/${window.localStorage.curr}`;
             a.appendChild(txt);
             li.appendChild(a);
             next.appendChild(li);
             
         }
         d.querySelector('.selectCourse').appendChild(selectCourse);
+    } ).catch( (e)=>{
+        console.log("An error has occured");
     } );
 
