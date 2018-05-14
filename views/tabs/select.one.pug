@@ -1,0 +1,40 @@
+-if(course)
+  h2.courseTitle=`${course.dept}${course.number} \u2012  ${course.name}`
+  script(src="/js/fetch-all.js" defer data-token="sch" data-dept=`${course.dept}` data-num=`${course.number}`)
+  table
+    tr
+      th Day of the week
+      th Start Time
+      th End Time
+    tr
+      td Monday
+      td
+        input(type="time" name="startMonday" id="startMonday")
+      td
+        input(type="time" name="endMonday" id="endMonday")
+    tr
+      td Tuesday
+      td
+        input(type="time" name="startTuesday" id="startTuesday")
+      td
+        input(type="time" name="endTuesday" id="endTuesday")
+    tr
+      td Wednesday
+      td
+        input(type="time" name="startWednesday" id="startWednesday")
+      td
+        input(type="time" name="endWednesday" id="endWednesday")
+    tr
+      td Thursday
+      td
+        input(type="time" name="startThursday" id="startThursday")
+      td
+        input(type="time" name="endThursday" id="endThursday")
+    tr
+      td Friday
+      td
+        input(type="time" name="startFriday" id="startFriday")
+      td
+        input(type="time" name="endFriday" id="endFriday")
+-else
+  h2 Nothing to show your, buckaroo :-(

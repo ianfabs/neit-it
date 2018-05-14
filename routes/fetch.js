@@ -9,6 +9,7 @@ mongoose.connect('mongodb://localhost/neit');
 const Cohort = require('../models/cohortSchema');
 const Curriculum = require('../models/curriculumSchema');
 const Course = require('../models/courseSchema');
+const Schedule = require('../models/scheduleSchema');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -41,6 +42,17 @@ router.post('/curriculum/:id', async (req,res,next)=>{
 });
 
 router.post('/course/:id', async (req,res,next)=>{
+  
+});
+
+router.post('/schedule/:dept/:num', async ()=>{
+  try{
+    await Schedule.findOne({ dept: req.params.dept, number: req.params.num}, '', (err, sch)=>{
+      res.json(sch);
+    });
+  }catch(e){
+    res.send(e);
+  }
   
 });
 
