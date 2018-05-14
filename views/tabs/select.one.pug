@@ -4,37 +4,74 @@
   table
     tr
       th Day of the week
-      th Start Time
-      th End Time
+      th Time RAnge
     tr
       td Monday
       td
-        input(type="time" name="startMonday" id="startMonday")
-      td
-        input(type="time" name="endMonday" id="endMonday")
+        div.time-range#monday
+          p Time Range: 
+            span(class="slider-time") 9:00 AM
+            |&nbsp;&horbar;&nbsp;
+            span(class="slider-time2") 5:00 PM
+
+          div(class="sliders_step1")
+            div(class="slider-range")
     tr
       td Tuesday
       td
-        input(type="time" name="startTuesday" id="startTuesday")
+        div.time-range#tuesday
+          p Time Range: 
+            span(class="slider-time") 9:00 AM
+            |&nbsp;&horbar;&nbsp;
+            span(class="slider-time2") 5:00 PM
+
+          div(class="sliders_step1")
+            div(class="slider-range")
       td
-        input(type="time" name="endTuesday" id="endTuesday")
     tr
       td Wednesday
       td
-        input(type="time" name="startWednesday" id="startWednesday")
-      td
-        input(type="time" name="endWednesday" id="endWednesday")
+        div.time-range#wednesday
+          p Time Range: 
+            span(class="slider-time") 9:00 AM
+            |&nbsp;&horbar;&nbsp;
+            span(class="slider-time2") 5:00 PM
+
+          div(class="sliders_step1")
+            div(class="slider-range")
     tr
       td Thursday
       td
-        input(type="time" name="startThursday" id="startThursday")
-      td
-        input(type="time" name="endThursday" id="endThursday")
+        div.time-range#thursday
+          p Time Range: 
+            span(class="slider-time") 9:00 AM
+            |&nbsp;&horbar;&nbsp;
+            span(class="slider-time2") 5:00 PM
+
+          div(class="sliders_step1")
+            div(class="slider-range")
     tr
       td Friday
       td
-        input(type="time" name="startFriday" id="startFriday")
-      td
-        input(type="time" name="endFriday" id="endFriday")
+        div.time-range#friday
+          p Time Range: 
+            span(class="slider-time") 9:00 AM
+            |&nbsp;&horbar;&nbsp;
+            span(class="slider-time2") 5:00 PM
+
+          div(class="sliders_step1")
+            div(class="slider-range")
+
+  datalist(id="startTimes")
+    option(value="7.45")
+    option(value="8.35")
+    option(value="9.35")
+    option(value="10.25")
+    option(value="11.15")
+  datalist(id="endTimes")
+    option(value="8:35")
+    option(value="9:35")
+    option(value="10:25")
+    option(value="11:15")
 -else
   h2 Nothing to show your, buckaroo :-(
