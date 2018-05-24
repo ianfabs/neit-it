@@ -45,13 +45,17 @@ router.post('/course/:id', async (req,res,next)=>{
   
 });
 
-router.post('/schedule/:dept/:num', async ()=>{
+router.post('/schedule/:dept/:num', (req, res, next)=>{
   try{
-    await Schedule.findOne({ dept: req.params.dept, number: req.params.num}, '', (err, sch)=>{
-      res.json(sch);
-    });
+     Schedule.findOne({ dept: req.params.dept, number: req.params.num}, '').then( (err, sch)=>{
+      if(err){ console.log(err); }
+      res.send(sch);
+      console.log(`SCH: ${sch}`);
+     } );
   }catch(e){
-    res.send(e);
+    console.log(`E : ${e}`);
+  }finally{
+    console.log("done")
   }
   
 });

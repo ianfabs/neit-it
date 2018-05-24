@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //S Schema
 const scheduleSchema = new Schema({
     dept: String,
-    number: Number,
+    number: String,
     times: Array,
     room: Schema.ObjectId,
     cohort: Schema.ObjectId,
